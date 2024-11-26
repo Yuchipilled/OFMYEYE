@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+        .image {
+            max-width: 90%;
+            max-height: 90%;
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://i.imgur.com/LXFN8dw.png" alt="cover" class="image active">
+    <img src="https://i.imgur.com/7llvd4E.png" alt="p1" class="image">
+    <img src="https://i.imgur.com/nERe0QT.png" alt="p2" class="image">
+    <img src="https://i.imgur.com/qnLALp4.png" alt="p3" class="image">
+    <img src="https://i.imgur.com/TUqbcIU.png" alt="p4" class="image">
+    <img src="https://i.imgur.com/HoNwblV.png" alt="p5" class="image">
+    <img src="https://i.imgur.com/VrWYb5z.png" alt="p6" class="image">
+
+    <button class="button prev" onclick="changeImage(-1)">❮</button>
+    <button class="button next" onclick="changeImage(1)">❯</button>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.image');
+
+        function changeImage(direction) {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
