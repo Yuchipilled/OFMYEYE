@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 30px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+    </style>
+    <title>Image Click Through</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="arrow arrow-left" onclick="moveSlide(-1)">&#10094;</div>
+    <div class="arrow arrow-right" onclick="moveSlide(1)">&#10095;</div>
+    
+    <div class="images" id="image-container">
+        <img src="image1.jpg" alt="Image 1" class="image">
+        <img src="image2.jpg" alt="Image 2" class="image">
+        <img src="image3.jpg" alt="Image 3" class="image">
+        <img src="image4.jpg" alt="Image 4" class="image">
+        <img src="image5.jpg" alt="Image 5" class="image">
+        <img src="image6.jpg" alt="Image 6" class="image">
+        <img src="image7.jpg" alt="Image 7" class="image">
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+
+    function moveSlide(step) {
+        const images = document.getElementById("image-container");
+        const totalImages = document.querySelectorAll(".image").length;
+        currentIndex += step;
+
+        if (currentIndex < 0) {
+            currentIndex = totalImages - 1;
+        } else if (currentIndex >= totalImages) {
+            currentIndex = 0;
+        }
+
+        const offset = -currentIndex * 100;
+        images.style.transform = `translateX(${offset}%)`;
+    }
+</script>
+
+</body>
+</html>
